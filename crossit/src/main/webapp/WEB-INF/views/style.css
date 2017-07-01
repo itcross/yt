@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+.main{
+	padding-left: 10px;
+}
+ul{
+	list-style: none outside none;
+}
+.head{
+	position: absolute;
+	right: 0;
+	top:0;
+}
+
+.head ul{
+	float: right;
+} 
+.left li{
+	float: left;
+	padding: 10px;
+}
+
+.side{
+	position: absolute;
+	background-color: #f5eecd;
+	margin-left: 50px;
+	width: 240px;
+	height: 100%;
+}
+.sidetext{
+	margin-top: 50%;
+}
+.side ul{
+	padding: 20px 40px;
+}
+.side li:first-child{
+	font-size: 24px;
+	border: thin;
+	color: #848484;
+}
+
+.bo{
+	position: absolute;
+	width:50%;
+	height: 60%;
+	margin: 100px 330px 10px;
+}
+.botable{
+	width: 900px;
+	border: none;
+	padding: 0 15px;
+	height: 400px;
+}
+table td:FIRST-CHILD {
+	text-align: center;
+	font: bolder;
+}
+input[type=text], input[type=radio], input[type=file]{
+	margin-left: 15px;
+}
+textarea{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.btn{
+	position: absolute;
+	right:0;
+	margin-top: 20px;
+}
+
+.listtable{
+	width: 900px;
+}
+.listtable th{
+	background-color: #dddddd;
+}
+
