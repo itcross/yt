@@ -7,14 +7,13 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/tt"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/crossit"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="apmsetup"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<!-- <property name="mapperLocations" value="classpath*:/mapper/*/*.xml"></property> -->
 		<property name="mapperLocations" value="classpath:com/cross/mapper/*.xml"></property>
 	</bean >
 		
