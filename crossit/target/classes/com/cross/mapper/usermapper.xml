@@ -8,9 +8,13 @@
 		FROM user
 		WHERE user_name = #{user_name} AND user_email = #{user_email}
 	</select>
-	<select id="selectUserPw" >
+	<select id="selectUserPw" resultType="String">
 		SELECT user_pwd
 		FROM user
 		WHERE user_name = #{user_name} AND user_email = #{user_email} AND user_id = #{user_id}
 	</select>
+	<update id="updateTempPw">
+		UPDATE user
+		SET user_pwd = #{temppwd}
+	</update>
 </mapper>

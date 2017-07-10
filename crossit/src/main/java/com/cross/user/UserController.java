@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cross.util.Validation;
+
 @Controller
 public class UserController {
 	
@@ -36,6 +38,8 @@ public class UserController {
 		model.addAttribute("serverTime", formattedDate );
 		return "/index"; //jsp ?åå?ùº
 	}
+	
+	// findid
 	@RequestMapping(value = "/test", method=RequestMethod.GET)
 	public String findidPage(Model model){
 		return "/main/findid";
@@ -43,7 +47,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/testid" , method= RequestMethod.POST)
 	@ResponseBody
-	public HashMap findUserId(Model model, @RequestParam String user_name, @RequestParam String user_email) throws Exception{
+	public HashMap findUserId(@RequestParam String user_name, @RequestParam String user_email) throws Exception{
 		int result = 0;
 		User user = new User();
 		user.setUser_name(user_name);
@@ -55,6 +59,34 @@ public class UserController {
 		HashMap map = new HashMap();
 		map.put("resultCode",result);
 		map.put("id", findid);
+		System.out.println(map);
+		return map;
+	}
+	
+	//findpwd(temp password)
+	@RequestMapping(value = "/test2", method=RequestMethod.GET)
+	public String findpwPage(Model model){
+		return "/main/findpw";
+	}
+	
+	@RequestMapping(value = "/testpw" , method= RequestMethod.POST)
+	@ResponseBody
+	public HashMap findUserPw(@RequestParam String user_name, @RequestParam String user_email, @RequestParam String user_id) throws Exception{
+		int result = 0;
+		User user = new User();
+		user.setUser_name(user_name);
+		user.setUser_email(user_email);
+		user.setUser_id(user_id);
+		String findpw = userDao.findPwd(user);
+		String tempPwd = "";
+		if(findpw != null){
+			result = 1; //success
+			tempPwd = Validation.getTempPwd(8);
+			userDao.updateTempPwd(tempPwd);
+		}
+		HashMap map = new HashMap();
+		map.put("resultCode",result);
+		map.put("pw", tempPwd);
 		System.out.println(map);
 		return map;
 	}

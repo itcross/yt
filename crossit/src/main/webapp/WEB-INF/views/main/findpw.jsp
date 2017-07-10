@@ -14,12 +14,16 @@
 						<h3>ID/PW 찾기</h3>
 						<div class="findmenu">
 							<ul>
-								<li id="on"><a href="#">ID찾기</a></li>
-								<li><a href="findpw">PW찾기</a></li>
+								<li><a href="findid.html">ID찾기</a></li>
+								<li id="on"><a href="#">PW찾기</a></li>
 							</ul>
-						</div>
-						<div class="findform">
+						</div>						
+						<div class="findform" id="pw">
 							<table>
+								<tr>
+									<td>아이디</td>
+									<td><input type="text" id="user_id"></td>
+								</tr>
 								<tr>
 									<td>이름</td>
 									<td><input type="text" id="user_name"></td>
@@ -32,14 +36,15 @@
 										</div>
 										<select class="sel2" style="width:142px;">
 											<option>직접입력</option>
-										</select>
+										</select>								
 									</td>
 								</tr>
 							</table>
-							<div class="select" id="selectid"><a href="#">조회</a></div>
-							<div class="result" style="display:none;"><p>회원님의 아이디는 <span id="fid"></span> 입니다.</p></div>
+							<div class="select" id="selectpw"><a href="#">조회</a></div>
+							<div class="result" style="display:none;"><p>임시 비밀번호는 <span id="fpw"></span> 입니다.</p></div>
 							<div class="goto" style="display:none;"><a href="login.html">로그인 바로가기</a></div>
 						</div>
+						
 					</div>
 				</div>
 				<jsp:include page="footer.jsp"></jsp:include>
@@ -48,19 +53,21 @@
 	</body>
 	<script type="text/javascript">
 	$(function(){
-		$("#selectid").click(function(){
+		$("#selectpw").click(function(){
 			$.ajax({
 				type : 'POST',
 				data : {
 					'user_email' : $("#email1").val() + "@" + $("#email2").val() ,
-					'user_name' : $("#user_name").val()	
+					'user_name' : $("#user_name").val(),
+					'user_id' : $("#user_id").val()
 				},
-				url : 'testid',
+				url : 'testpw',
 				success : function(data){
 					if(data.resultCode == 0){
 						alert("일치하는 회원정보가 없습니다.");
 					}else{
-						$("#fid").html(data.id);
+						$("#fpw").html(data.pw);
+						$("#selectpw").hide();
 						$(".result").fadeIn(1500);
 						$(".goto").fadeIn(1500);
 					}
