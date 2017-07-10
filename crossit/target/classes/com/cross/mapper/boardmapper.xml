@@ -3,6 +3,7 @@
   
 <mapper namespace="sql">
 
+	<!-- 게시판 샘플 -->
     <select id="getList" resultType="hashmap" >
 		 SELECT no,subject,regdate
 		 FROM board
