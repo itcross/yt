@@ -22,22 +22,9 @@ import com.cross.util.Validation;
 public class UserController {
 	
 	@Autowired
-	private UserDao userDao;
+	private UserDaoImpl userDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-	@RequestMapping(value = "/") //Îß§Ïπ≠ URL
-	public String home(Locale locale, Model model) {
-		logger.info("welcome ! admin page");
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		return "/index"; //jsp ?åå?ùº
-	}
 	
 	// findid
 	@RequestMapping(value = "/test", method=RequestMethod.GET)

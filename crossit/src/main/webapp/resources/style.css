@@ -54,9 +54,6 @@ table td:FIRST-CHILD {
 	text-align: center;
 	font: bolder;
 }
-input[type=text], input[type=radio], input[type=file]{
-	margin-left: 15px;
-}
 textarea{
 	margin-left: 15px;
 	margin-right: 15px;

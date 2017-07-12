@@ -30,15 +30,19 @@
 										<div class="emaildiv">
 										<input type="text" class="emailt" id="email1" style="margin-right:5px;"> @ <input type="text" class="emailt" id="email2" style="margin-left:5px; float:right;">
 										</div>
-										<select class="sel2" style="width:142px;">
-											<option>직접입력</option>
+										<select class="sel2" id="selemail" style="width:142px;">
+											<option value="">직접입력</option>
+											<option value="naver.com" >naver.com</option>
+											<option value="nate.com">nate.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="hanmail.net">hanmail.net</option>
 										</select>
 									</td>
 								</tr>
 							</table>
 							<div class="select" id="selectid"><a href="#">조회</a></div>
 							<div class="result" style="display:none;"><p>회원님의 아이디는 <span id="fid"></span> 입니다.</p></div>
-							<div class="goto" style="display:none;"><a href="login.html">로그인 바로가기</a></div>
+							<div class="goto" style="display:none;"><a href="login">로그인 바로가기</a></div>
 						</div>
 					</div>
 				</div>
@@ -49,6 +53,7 @@
 	<script type="text/javascript">
 	$(function(){
 		$("#selectid").click(function(){
+			
 			$.ajax({
 				type : 'POST',
 				data : {
@@ -71,8 +76,5 @@
 			});		
 		});	
 	})
-	
-	
-	
 	</script>
 </html>

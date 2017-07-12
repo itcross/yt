@@ -21,6 +21,18 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	
-	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.daum.net"></property>
+		<property name="port" value="465"></property>
+		<property name="username" value="modernhart"></property>
+		<property name="password" value="admin8392"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtps</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.startls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
