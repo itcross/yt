@@ -90,23 +90,4 @@ public class User {
 	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
-	public User(int user_no, String user_id, String user_pwd, String user_name, String user_birth, String user_sex,
-			String user_phone, String user_email, String reg_date, String upd_date, String login_date, String admin) {
-		super();
-		this.user_no = user_no;
-		this.user_id = user_id;
-		this.user_pwd = user_pwd;
-		this.user_name = user_name;
-		this.user_birth = user_birth;
-		this.user_sex = user_sex;
-		this.user_phone = user_phone;
-		this.user_email = user_email;
-		this.reg_date = reg_date;
-		this.upd_date = upd_date;
-		this.login_date = login_date;
-		this.admin = admin;
-	}
-	
-	
-	
 }

@@ -1,6 +1,6 @@
 package com.cross.util;
 
-import java.util.Random;
+import com.cross.user.User;
 
 public class Validation {
 	//create temp password
@@ -24,4 +24,14 @@ public class Validation {
 		}
 		return sb.toString();
 	}
+	
+	//login checking
+	public static boolean loginChk(User user, String inputPwd){
+		if(user.getUser_pwd().equals(inputPwd)){
+			return true; //success
+		}else{
+			return false;
+		}
+	}
+	
 }
