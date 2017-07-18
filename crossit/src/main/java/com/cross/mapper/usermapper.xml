@@ -19,7 +19,7 @@
 	</update>
 	
 	<!-- login -->
-	<select id="getUserInfoById" parameterType="String" resultType="com.cross.user.User">
+	<select id="getUserInfoById" parameterType="String" resultType="com.cross.model.User">
 		SELECT *
 		FROM user
 		WHERE user_id = #{user_id};

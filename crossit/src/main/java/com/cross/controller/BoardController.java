@@ -1,4 +1,4 @@
-package com.cross.board;
+package com.cross.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -14,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cross.model.Board;
+import com.cross.service.BoardDao;
 
 /**
  * Handles requests for the application home page.
@@ -36,25 +39,25 @@ public class BoardController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		return "index"; //jsp íŒŒì¼
+		return "index"; //jsp ?ŒŒ?¼
 	}
 	
-	//ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸(SELECT)
+	//ê²Œì‹œ?Œ ë¦¬ìŠ¤?Š¸(SELECT)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardlist(Model model) {
 		
 		List<HashMap<String, Object>> list = boDao.getList();
 		model.addAttribute("list",list);
-		return "boardlist"; //jsp íŒŒì¼
+		return "boardlist"; //jsp ?ŒŒ?¼
 	}
 	
-	//ê¸€ ë“±ë¡  í˜ì´ì§€
+	//ê¸? ?“±ë¡?  ?˜?´ì§?
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String boardw() {
-		return "regboard"; //jsp íŒŒì¼
+		return "regboard"; //jsp ?ŒŒ?¼
 	}
 	
-	//ê²Œì‹œíŒ ê¸€ë“±ë¡(INSERT)
+	//ê²Œì‹œ?Œ ê¸??“±ë¡?(INSERT)
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
 	public String boardInsert(@RequestParam String subject, @RequestParam String content, Model model) {
 		try{
@@ -63,7 +66,7 @@ public class BoardController {
 			bo.setContent(content);
 			int n =  boDao.insertBo(bo);
 			if(n != 0){
-				System.out.println("ë””ë¹„ ì •ìƒ ì…ë ¥");
+				System.out.println("?””ë¹? ? •?ƒ ?…? ¥");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -71,26 +74,26 @@ public class BoardController {
 		return "write";
 	}
 	
-	//ê²Œì‹œíŒ ê¸€ìƒì„¸(SELECT)
+	//ê²Œì‹œ?Œ ê¸??ƒ?„¸(SELECT)
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String boarddetail(Model model, @RequestParam int no) {
 		System.out.println(no);
 		HashMap<String, Object> map = boDao.getBoard(no);
 		model.addAttribute("map" , map);
-		return "viewBoard"; //jsp íŒŒì¼
+		return "viewBoard"; //jsp ?ŒŒ?¼
 	}
 	
-	//ìˆ˜ì • í˜ì´ì§€
+	//?ˆ˜? • ?˜?´ì§?
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String boardu(Model model, @RequestParam int no) {
 		
 		HashMap<String, Object> view = boDao.getBoard(no);
 		model.addAttribute("view",view);
-		return "regboard"; //jsp íŒŒì¼
+		return "regboard"; //jsp ?ŒŒ?¼
 		
 	}
 	
-	//ê²Œì‹œíŒ ê¸€ ìˆ˜ì •(UPDATE)
+	//ê²Œì‹œ?Œ ê¸? ?ˆ˜? •(UPDATE)
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
 	public String boardUpdate(Model model , @RequestParam int no, @RequestParam String subject, @RequestParam String content) {
 		
@@ -104,19 +107,19 @@ public class BoardController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "update"; //í•´ë‹¹ jsp ì´ë™(ê²½ê³ ì°½)
+		return "update"; //?•´?‹¹ jsp ?´?™(ê²½ê³ ì°?)
 	}
 	
-	//ê²Œì‹œíŒ ê¸€ ì‚­ì œ(DELETE)
+	//ê²Œì‹œ?Œ ê¸? ?‚­? œ(DELETE)
 	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
 	public String deleteBoard(Model model, @RequestParam int no) {
 		try{
-			boDao.deleteBo(no); //ë°ì´í„° ì‚­ì œ
+			boDao.deleteBo(no); //?°?´?„° ?‚­? œ
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "delete"; //í•´ë‹¹ jsp ì´ë™(ê²½ê³ ì°½)
+		return "delete"; //?•´?‹¹ jsp ?´?™(ê²½ê³ ì°?)
 	} 
 	
 }

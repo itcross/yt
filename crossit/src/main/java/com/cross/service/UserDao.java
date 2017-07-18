@@ -1,4 +1,6 @@
-package com.cross.user;
+package com.cross.service;
+
+import com.cross.model.User;
 
 public interface UserDao {
 	

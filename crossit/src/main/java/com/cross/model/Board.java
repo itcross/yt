@@ -1,4 +1,4 @@
-package com.cross.board;
+package com.cross.model;
 
 public class Board {
 	public int no;
