@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 import com.cross.model.Portfo;
+import com.cross.model.Resume;
 
 public interface PortfDao {
 	
@@ -14,7 +15,10 @@ public interface PortfDao {
 	public int createPortf(HttpSession session);
 	
 	//포트폴리오 내용
-	public HashMap<Object,Object> viewPort(String user_id);
+	public Resume viewPort(String user_id);
+	
+	//포트폴리오 내 다중 리스트
+	public List<HashMap<String, Object>> viewListinPortf(String user_id);
 	
 	//포트폴리오 삭제
 	public int deletePortf(HttpSession session);
