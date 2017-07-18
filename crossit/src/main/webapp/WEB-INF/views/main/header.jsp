@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css?ver=0.1">
 	</head>
 	<body class="landing">
 		<!-- Header -->

@@ -49,7 +49,8 @@
 
 ${l}
 
-
+<input type="button" value="수정">
+<input type="button" value="삭제">
 
 
 </body>

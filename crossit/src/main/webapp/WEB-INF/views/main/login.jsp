@@ -22,7 +22,7 @@
 									<input type="text" placeholder="PASSWORD" name="user_pwd" style="margin-top:6px;" class="loginp placepw"/>
 									<input type="submit" value="LOGIN" id="login_btn" style="display:inline-block;">
 									<div id="botton">
-										<input type="checkbox" name="saveid" value="" id="saveid">아이디 저장
+										<label id="svid"><input type="checkbox" name="saveid" value="" id="saveid">아이디 저장</label>
 										<a href="join_agree.html" id="gray">회원가입</a>
 										<a href="test" id="gray" style="margin-left: 33px;">ID/PW찾기</a>
 									</div>

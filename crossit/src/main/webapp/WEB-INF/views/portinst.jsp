@@ -10,49 +10,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 <title>Insert title here</title>
-
 </head>
 <body>
-<div class="main">
-	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="side.jsp"></jsp:include>
+<h2>포트폴리오 등록</h2>
+부분 : <input type="text" name="position"><br>
+사진첨부 : <input type="file" name="picture1"> -- 추가버튼시 사진첨부(최대3개)<br>
+제목 : <input type="text" name="r_subject"><br>
+키워드 : <input type="text" name="r_hash"><br>
+SNS 주소 : <input type="text" name="sns_url"> -- 추가버튼시 텍스트추가(최대2개)<br>
+이름 : <input type="text" name="name_kr"><br>
+(이름)영문 : <input type="text" name="name_en"><br>
+생년월일 : <input type="text" name="r_birth"><br>
+경력 : <input type="text" name="r_degree"><br>
+PHONE : <input type="text" name="r_phone"><br>
+이메일주소 : <input type="text" name="r_email"><br>
+주소 : <input type="text" name="r_address"><br>
+<br><br>
+<h3>업무스킬</h3>
+<input type="text" name="skill"> 점수 : <input type="text" name="score" size="10px"> -- 추가시 입력텍스트 추가(최대 5개)<br>
+<h3>취미 및 재능</h3>
+<input type="text" name="r_address"> 점수 : <input type="text" name="r_score" size="10px"> -- 추가시 입력텍스트 추가(최대 5개)<br>
+<h3>수행 프로젝트</h3>
+프로젝트명 : <input type="text" name="PRJ_NAME"> <br>
+프로젝트내용 : <input type="text" name="P_CONTENT"><br>
+사용 스킬 : <input type="text" name="USED_SKILL"><br>
+기간 : <input type="text" name="PERIOD_ST" size="10px"> ~ <input type="text" name="PERIOD_ex" size="10px"><br>
+<h3>이미지앨범</h3>
+앨범명 : <input type="text" name="CATEGORY"><br>
+이미지 : <input type="file" name="IMAGE"><br>
 
-	<form>
-	<div class="bo">
-	<h1>검진결과 관리</h1>
-		<table border="1" cellpadding="0" cellspacing="0" class="listtable">
-			<colgroup>
-				<col width="10%">
-				<col width="">
-				<col width="20%">
-				<col width="10%">
-			</colgroup>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일시</th>
-				<th>비고</th>
-			</tr>
-			<%
-			List<HashMap<String,Object>> list = (List<HashMap<String,Object>>)request.getAttribute("list");
-			for(int i = 0 ; i < list.size() ; i++ ){
-				HashMap map = list.get(i);
-			%>
-			<c:forEach items="list" var="list">
-			<tr>
-				<td><%=map.get("no") %></td>
-				<td align="center"><a href="detail?no=<%=map.get("no")%>"><%=map.get("subject") %></a></td>
-				<td align="center"><%=map.get("regdate") %></td>
-				<td></td>
-			</tr>
-			</c:forEach>
-			<%} %>
-		</table>
-		<div class="btn">
-			<input type="button" value="신규 등록" onclick="location.href='write'"> 
-		</div>
-	</div>
-	</form>
-</div>
+<input type="submit" value="등록">
+<input type="button" value="임시저장">
 </body>
 </html>
