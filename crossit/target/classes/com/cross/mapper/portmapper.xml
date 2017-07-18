@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="usersql">
-
-	<select id="selectUserId" resultType="String">
-		SELECT user_id
-		FROM user
-		WHERE user_name = #{user_name} AND user_email = #{user_email}
-	</select>
-	<select id="selectUserPw" resultType="String">
-		SELECT user_pwd
-		FROM user
-		WHERE user_name = #{user_name} AND user_email = #{user_email} AND user_id = #{user_id}
-	</select>
-	<update id="updateTempPw">
-		UPDATE user
-		SET user_pwd = #{temppwd}
-	</update>
+<mapper namespace="portsql">
 	
-	<!-- login -->
-	<select id="getUserInfoById" parameterType="String" resultType="com.cross.model.User">
-		SELECT *
-		FROM user
-		WHERE user_id = #{user_id};
+	<!-- 전체 포트폴리오 불러오기 -->
+	<select id="listPortf" resultType="com.cross.model.Resume">
+		SELECT picture1, name_kr, r_degree, r_wdate, r_hash, r_subject
+		FROM resume
+		WHERE r_temp = 'N'
 	</select>
+	
+	<!-- 포트폴리오 보기 -->
+	<select id="viewPortf" parameterType="String" resultType="HashMap">
+		SELECT * 
+		FROM resume
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 임시저장 여부 -->
+	<select id="isTempPortf">
+		SELECT r_temp
+		FROM resume
+		WEHRE user_id = #{user_id}
+	</select>
+
+
+	<!-- 임시저장의 경우 -->
+	<insert id="regTempPort">
+		INSERT into resume
+		VALUES()
+		WHERE user_id = #{user_id}
+	</insert>
+	
+	<!-- 포트폴리오 등록 -->
+	<insert id="regPortf">
+		INSERT into resume
+		VALUES()
+		WHERE user_id = #{user_id}
+	</insert>
+	
+	<!-- 포트폴리오 수정 -->
+	<update id="updatePf">
+		UPDATE resume
+		SET user_pwd = #{temppwd}
+		WHERE 
+	</update>
+
+	<!-- 등록 포트폴리오 삭제 -->
+	<delete id="delPortf">
+		DELETE
+		FROM resume r, portfolio p, image_album i, work_skill w
+		WEHRE r.user_id = #{user_id}
+	</delete>
 </mapper>
