@@ -11,11 +11,33 @@
 	</select>
 	
 	<!-- 포트폴리오 보기 -->
-	<select id="viewPortf" parameterType="String" resultType="HashMap">
+	<select id="viewPortf" parameterType="String" resultType="com.cross.model.Resume">
 		SELECT * 
 		FROM resume
 		WHERE user_id = #{user_id}
 	</select>
+	
+	<!-- 포트폴리오 내 업무스킬 보기 -->
+	<select id="viewSkill" resultType="HashMap">
+		SELECT skill,score 
+		FROM work_skill 
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 포트폴리오 내 이미지앨범 보기 -->
+	<select id="viewImage" resultType="HashMap">
+		SELECT category,image 
+		FROM image_album 
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 포트폴리오 내 수행프로젝트 보기 -->
+	<select id="viewProj" resultType="HashMap">
+		SELECT prj_name,p_content ,used_skill,period_st,period_ex
+		FROM portfolio 
+		WHERE user_id = #{user_id}
+	</select>
+	
 	
 	<!-- 임시저장 여부 -->
 	<select id="isTempPortf">
@@ -23,7 +45,6 @@
 		FROM resume
 		WEHRE user_id = #{user_id}
 	</select>
-
 
 	<!-- 임시저장의 경우 -->
 	<insert id="regTempPort">

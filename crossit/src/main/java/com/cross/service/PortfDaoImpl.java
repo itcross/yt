@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cross.model.Portfo;
+import com.cross.model.Resume;
 
 @Repository
 public class PortfDaoImpl implements PortfDao {
@@ -24,12 +25,21 @@ public class PortfDaoImpl implements PortfDao {
 	}
 	
 	@Override
+	public List<HashMap<String, Object>> viewListinPortf(String user_id) {
+		List list = new ArrayList<HashMap<String, Object>>();
+		list.add(sqlSession.selectList("portsql.viewSkill", user_id));
+		list.add(sqlSession.selectList("portsql.viewImage", user_id));
+		list.add(sqlSession.selectList("portsql.viewProj", user_id));
+		return list;
+	}
+	
+	@Override
 	public int createPortf(HttpSession session) {
 		String sessid = (String) session.getAttribute("user_id");
 		return sqlSession.insert("portsql.regPortf",sessid);
 	}
 	@Override
-	public HashMap<Object,Object> viewPort(String user_id) {
+	public Resume viewPort(String user_id) {
 		return sqlSession.selectOne("portsql.viewPortf", user_id);
 	}
 	

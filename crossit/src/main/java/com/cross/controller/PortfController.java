@@ -1,5 +1,8 @@
 package com.cross.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cross.model.Resume;
 import com.cross.service.PortfDaoImpl;
 
 /**
@@ -32,11 +37,16 @@ public class PortfController {
 	}
 	
 	//개인 포트 이력
-	@RequestMapping(value = "viewport",method=RequestMethod.GET)
-	public String viewp(HttpSession session, Model model){
+	@RequestMapping(value = "/portview",method=RequestMethod.GET)
+	public ModelAndView viewPort(@RequestParam String user_id,HttpSession session)throws Exception{
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("portview");
+		mv.addObject("f", portfDao.viewPort(user_id));
+		List<HashMap<String, Object>> l = portfDao.viewListinPortf(user_id);
+		mv.addObject("l", l);
+		System.out.println(l);
+		return mv;
 		
-		
-		return "portview";
 	}
-	
 }
