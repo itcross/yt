@@ -1,7 +1,7 @@
 package com.cross.model;
 
 public class Image {
-	public int no;
+	public int no; //
 	public String user_id;
 	public String category;
 	public String image1;
