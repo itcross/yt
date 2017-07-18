@@ -673,6 +673,12 @@ textarea{
 		border-radius: 9px;
 		margin-left: 19px;
 	}
+	.loginform #svid{
+		display: initial;
+	}
+	.loginform #svid:hover{
+		cursor: pointer;
+	}
 	
 	/* footer  */
 	#footer .foot_menu{
@@ -755,7 +761,7 @@ textarea{
 		appearance: none;
 		display: block;
 		float: left;
-		width: 1.2em;
+		width: 1.0em;
 		margin: 8px 0;
 	}
 	

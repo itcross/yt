@@ -45,8 +45,8 @@ public class PortfDaoImpl implements PortfDao {
 	
 	@Override
 	public int deletePortf(HttpSession session) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sessid = (String) session.getAttribute("user_id");
+		return sqlSession.delete("portsql.delPortf", sessid);
 	}
 	
 	@Override

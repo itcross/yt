@@ -47,6 +47,40 @@ public class PortfController {
 		mv.addObject("l", l);
 		System.out.println(l);
 		return mv;
+	}
+	
+	//포트폴리오 삭제
+	@RequestMapping(value = "/portdel", method = RequestMethod.POST)
+	public ModelAndView delPort(HttpSession session,@RequestParam String del){
+		String sessid = (String)session.getAttribute("user_id");
+		ModelAndView mv = new ModelAndView();
 		
+		if(del == "y" && sessid != null){
+			portfDao.deletePortf(session);
+			mv.setViewName("portlist");
+		}else{
+			mv.setViewName("portview");
+		}
+		
+		return mv;
+	}
+	
+	//포트폴리오 등록 페이지
+	@RequestMapping(value = "/portinst" , method = RequestMethod.GET)
+	public ModelAndView regPortPage(HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("portinst");
+		/*if(session.getAttribute("user_id") != null){
+			mv.setViewName("portinst");
+		}
+		
+		//세션이 없다면 글등록 권한 없음
+		mv.setViewName("/main/login");*/
+		return mv;
+	}
+	
+	@RequestMapping(value = "portinsert.do" , method = RequestMethod.POST )
+	public String insertPortf(){
+		return null;
 	}
 }
