@@ -1,6 +1,6 @@
 package com.cross.util;
 
-import com.cross.user.User;
+import com.cross.model.User;
 
 public class Validation {
 	//create temp password
