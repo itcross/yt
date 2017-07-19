@@ -48,23 +48,38 @@
 
 	<!-- 임시저장의 경우 -->
 	<insert id="regTempPort">
-		INSERT into resume
+		INSERT into resume(R_TEMP)
 		VALUES()
 		WHERE user_id = #{user_id}
 	</insert>
 	
 	<!-- 포트폴리오 등록 -->
 	<insert id="regPortf">
-		INSERT into resume
+		INSERT INTO resume(user_id,POSITION,R_SUBJECT,R_HASH,sns_url,NAME_KR,NAME_en,R_BIRTH,R_DEGREE,
+		R_PHONE,R_EMAIL,R_ADDRESS,R_WDATE)
 		VALUES()
 		WHERE user_id = #{user_id}
 	</insert>
 	
+	<!-- 포트폴리오 사진 등록 -->
+	<insert id="regPortImage">
+		INSERT INTO resume(PICTURE1,PICTURE2,PICTURE3)
+		VALUES(#{PICTURE1},#{PICTURE2},#{PICTURE3})
+		WHERE user_id = #{user_id}
+	</insert>
+	
+	<!-- 조회수 증가 -->
+	<update id="plusViews">
+		UPDATE resume
+		SET r_views = r_views + 1
+		WHERE user_id = #{user_id}
+	</update>
+	
 	<!-- 포트폴리오 수정 -->
 	<update id="updatePf">
 		UPDATE resume
-		SET user_pwd = #{temppwd}
-		WHERE 
+		SET
+		WHERE user_id = #{user_id} 
 	</update>
 
 	<!-- 등록 포트폴리오 삭제 -->

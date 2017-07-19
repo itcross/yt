@@ -78,7 +78,7 @@ public class PortfController {
 		mv.setViewName("/main/login");*/
 		return mv;
 	}
-	
+	//포트폴리오 등록
 	@RequestMapping(value = "portinsert.do" , method = RequestMethod.POST )
 	public String insertPortf(){
 		return null;

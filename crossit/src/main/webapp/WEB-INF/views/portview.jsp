@@ -8,7 +8,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 <title>Insert title here</title>
 
 </head>
@@ -50,7 +49,7 @@
 ${l}
 
 <input type="button" value="수정">
-<input type="button" value="삭제">
+<input type="button" value="삭제" id="del">
 
 
 </body>
