@@ -33,7 +33,7 @@ public class UserController {
 	public String findidPage(Model model){
 		return "/main/findid";
 	}
-	
+	 
 	@RequestMapping(value = "/testid" , method= RequestMethod.POST)
 	@ResponseBody
 	public HashMap findUserId(@RequestParam String user_name, @RequestParam String user_email) throws Exception{
