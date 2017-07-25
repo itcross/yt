@@ -1,19 +1,16 @@
-<!DOCTYPE HTML>
-<!--
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Landed by HTML5 UP</title>
-		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="resources/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="resources/style.css">
 	</head>
 	<body class="landing">
 		<div id="page-wrapper">
@@ -25,8 +22,8 @@
 					<h1 id="logo"><a href="#"></a></h1>
 						<div id="tomember">
 							<ul style="width: 329px;">
-								<li style="width: 30%;"><a href="login.html">로그인</a></li>
-								<li style="width: 30%;"><a href="join_agree.html">회원가입</a></li>
+								<li style="width: 30%;"><a href="loginform">로그인</a></li>
+								<li style="width: 30%;"><a href="join_agree">회원가입</a></li>
 								<li style="width: 40%;"><a href="findid.html">ID/PW 찾기</a></li>
 							</ul>
 						</div>
@@ -65,7 +62,7 @@
 							<div class="jointxt">회원가입이 완료되었습니다.</div>
 							<div class="join_btn">
 								<input type="button" value="메인으로" class="blue"> 
-								<input type="button" value="로그인" class="gray" onclick="location.href='login.html'"> 
+								<input type="button" value="로그인" class="gray" onclick="location.href='loginform'"> 
 							</div>
 						</div>
 					</div>
@@ -94,12 +91,12 @@
 			</footer>
 			</div>
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="mochi.js"></script>
+			<script src="resources/assets/js/jquery.min.js"></script>
+			<script src="resources/assets/js/jquery.scrolly.min.js"></script>
+			<script src="resources/assets/js/jquery.dropotron.min.js"></script>
+			<script src="resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="resources/assets/js/skel.min.js"></script>
+			<script src="resources/assets/js/util.js"></script>
+			<script src="resources/mochi.js"></script>
 	</body>
 </html>

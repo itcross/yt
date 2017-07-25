@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -104,98 +107,59 @@
 	                              </tr>
 	                              </thead>
 	                              <tbody>
-	                              <tr>
-	                                  <td>1</td>
-	                                  <td>admin</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>3</td>
-	                                  <td>Simon</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>관리자</td>
-	                                  <td>1991.10.10</td>
-	                                  <td>010-3333-2222</td>
-	                                  <td>test@naver.com</td>
-	                                  <td>남</td>
-	                                  <td>2017/06/07</td>
-	                                  <td><button type="button" class="btn btn-theme02">초기화</button></td>
-	                              </tr>
-	                              </tbody>
+	                             <c:forEach var="board" items="${tmeList}">
+										<tr>
+											<td>${board.user_no }</td>
+											<td>
+											${board.user_id }
+											</td>
+											<td>${board.user_name }</td>
+											<td>${board.user_birth }</td>
+											<td>${board.user_phone }</td>
+											<td>${board.user_email }</td>
+											<td>${board.user_sex }</td>
+											<td>${board.reg_date }</td>
+											</tr>
+								</c:forEach>
+	                            </tbody>
 	                          </table>
 	                  	  </div>
 	                  </div>
 				</div>
 				<div class="row mt text-center" >
 					<div class="btn-group">
-						<button type="button" class="btn btn-default">&lt;</button>
-						<button type="button" class="btn btn-default">1</button>
-						<button type="button" class="btn btn-default">2</button>
-						<button type="button" class="btn btn-default">3</button>
-						<button type="button" class="btn btn-default">4</button>
-						<button type="button" class="btn btn-default">5</button>
-						<button type="button" class="btn btn-default">&gt;</button>
-					</div>
+	
+					<c:if test="${totalCnt > 0}">
+  					<c:set var="pageCount" value="${totalCnt / listMax + ( totalCnt % listMax == 0 ? 0 : 1)}"/>
+   					<c:set var="startPage" value="${pageMax*(pageGroupNum-1)+1}"/>
+   					<c:set var="endPage" value="${startPage + pageMax-1}"/>
+   
+   					<c:if test="${endPage > pageCount}" >
+   				    <c:set var="endPage" value="${pageCount}" />
+   					</c:if>
+          
+   					<c:if test="${pageGroupNum > 1}">
+        			<a href="user?pageNum=${(pageGroupNum-2)*pageMax+1 }">[이전]</a>
+   					</c:if>
+   					
+					<c:forEach var="i" begin="${startPage}" end="${endPage }">
+					
+					<a href="user?pageNum=${i}">[
+          			<c:if test="${currentNum == i}">
+        			 	${i} ]
+        			
+       			  	</c:if>
+       			
+      				</a>
+ 		
+</c:forEach>
+
+
+   					<c:if test="${pageGroupNum < pageGroupCount}">
+       				 <a href="list?pageNum=${pageGroupNum*pageMax+1}">[다음]</a>
+   					</c:if>
+				</c:if>
+						</div>
 				</div>
           </section>
       </section>
