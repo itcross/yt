@@ -29,14 +29,14 @@ public class PortfController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PortfController.class);
 	
-	//ÀüÃ¼ Æ÷Æ®Æú¸®¿À
+	//ì „ì²´ í¬íŠ¸í´ë¦¬ì˜¤
 	@RequestMapping(value = "/portlist", method = RequestMethod.GET)
 	public String portList(Model model) {
 		model.addAttribute("portl",portfDao.listPortf());
 		return "portlist";
 	}
 	
-	//°³ÀÎ Æ÷Æ® ÀÌ·Â
+	//ê°œì¸ í¬íŠ¸ ì´ë ¥
 	@RequestMapping(value = "/portview",method=RequestMethod.GET)
 	public ModelAndView viewPort(@RequestParam String user_id,HttpSession session)throws Exception{
 
@@ -49,7 +49,7 @@ public class PortfController {
 		return mv;
 	}
 	
-	//Æ÷Æ®Æú¸®¿À »èÁ¦
+	//í¬íŠ¸í´ë¦¬ì˜¤ ì‚­ì œ
 	@RequestMapping(value = "/portdel", method = RequestMethod.POST)
 	public ModelAndView delPort(HttpSession session,@RequestParam String del){
 		String sessid = (String)session.getAttribute("user_id");
@@ -65,7 +65,8 @@ public class PortfController {
 		return mv;
 	}
 	
-	//Æ÷Æ®Æú¸®¿À µî·Ï ÆäÀÌÁö
+	//í¬íŠ¸í´ë¦¬ì˜¤ ë“±ë¡ í˜ì´ì§€
+
 	@RequestMapping(value = "/portinst" , method = RequestMethod.GET)
 	public ModelAndView regPortPage(HttpSession session){
 		ModelAndView mv = new ModelAndView();
@@ -74,7 +75,7 @@ public class PortfController {
 			mv.setViewName("portinst");
 		}
 		
-		//¼¼¼ÇÀÌ ¾ø´Ù¸é ±Ûµî·Ï ±ÇÇÑ ¾øÀ½
+		//ì„¸ì…˜ì´ ì—†ë‹¤ë©´ ê¸€ë“±ë¡ ê¶Œí•œ ì—†ìŒ
 		mv.setViewName("/main/login");*/
 		return mv;
 	}
