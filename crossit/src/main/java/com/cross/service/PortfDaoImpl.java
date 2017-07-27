@@ -10,8 +10,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cross.model.Image;
 import com.cross.model.Portfo;
 import com.cross.model.Resume;
+import com.cross.model.Workskill;
 
 @Repository
 public class PortfDaoImpl implements PortfDao {
@@ -23,6 +25,28 @@ public class PortfDaoImpl implements PortfDao {
 	public List<Portfo> listPortf() {
 		return sqlSession.selectList("portsql.listPortf");
 	}
+	@Override
+	public void createResume(Resume rvo) {
+		sqlSession.update("portsql.insertPortf", rvo);
+	}
+	@Override
+	public void createSkill(Workskill wsk) {
+		sqlSession.insert("portsql.insertSkill", wsk);
+	}
+	@Override
+	public void createPortImg(Image img) {
+		sqlSession.insert("portsql.insertImage", img);
+		
+	}
+	@Override
+	public void createProj(Portfo pf) {
+		sqlSession.insert("portsql.insertProj", pf);
+	}
+	
+	@Override
+	public void inserPic(HashMap<String, Object> h) {
+		sqlSession.insert("portsql.insertPic", h);
+	}
 	
 	@Override
 	public List<HashMap<String, Object>> viewListinPortf(String user_id) {
@@ -33,11 +57,7 @@ public class PortfDaoImpl implements PortfDao {
 		return list;
 	}
 	
-	@Override
-	public int createPortf(HttpSession session) {
-		String sessid = (String) session.getAttribute("user_id");
-		return sqlSession.insert("portsql.regPortf",sessid);
-	}
+	
 	@Override
 	public Resume viewPort(String user_id) {
 		return sqlSession.selectOne("portsql.viewPortf", user_id);

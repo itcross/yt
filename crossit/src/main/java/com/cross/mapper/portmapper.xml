@@ -53,19 +53,51 @@
 		WHERE user_id = #{user_id}
 	</insert>
 	
-	<!-- 포트폴리오 등록 -->
-	<insert id="regPortf">
-		INSERT INTO resume(user_id,POSITION,R_SUBJECT,R_HASH,sns_url,NAME_KR,NAME_en,R_BIRTH,R_DEGREE,
-		R_PHONE,R_EMAIL,R_ADDRESS,R_WDATE)
-		VALUES()
+	<!-- 포트폴리오 등록 및 수정 -->
+	<update id="insertPortf" parameterType="com.cross.model.Resume">
+		UPDATE resume
+		SET position = #{position}, r_subject=#{r_subject},r_hash=#{r_hash},sns_url1=#{sns_url1},sns_url2=#{sns_url2},
+		name_kr=#{name_kr},name_en=#{name_en},r_birth=#{r_birth},r_degree=#{r_degree},r_phone=#{r_phone},
+		r_email = #{r_email}, r_address =#{r_address},r_wdate=now()
 		WHERE user_id = #{user_id}
+	</update>
+	<!-- 사진 등록 -->
+	<insert id="insertPic" parameterType="HashMap">
+		INSERT INTO resume(user_id,picture1,picture2,picture3) 
+		VALUES('a',#{pic1},#{pic2},#{pic3})
 	</insert>
 	
-	<!-- 포트폴리오 사진 등록 -->
-	<insert id="regPortImage">
-		INSERT INTO resume(PICTURE1,PICTURE2,PICTURE3)
-		VALUES(#{PICTURE1},#{PICTURE2},#{PICTURE3})
-		WHERE user_id = #{user_id}
+	<!-- 포트폴리오 내 업무스킬 등록 -->
+	<insert id="insertSkill" parameterType="com.cross.model.Workskill">
+		INSERT INTO work_skill(user_id,skill,score) 
+		VALUES(
+			#{user_id},
+			#{skill},
+			#{score}
+			)
+	</insert>
+	
+	<!-- 포트폴리오 내 이미지앨범 등록 -->
+	<insert id="insertImage" parameterType="com.cross.model.Image">
+		INSERT INTO image_album(user_id,category,image) 
+		VALUES(
+			#{user_id},
+			#{category},
+			#{image}
+			)
+	</insert>
+	
+	<!-- 포트폴리오 내 수행프로젝트 등록 -->
+	<insert id="insertProj" parameterType="com.cross.model.Portfo">
+		INSERT INTO portfolio(user_id,prj_name,p_content,used_skill,period_st,period_ex) 
+		VALUES(
+			#{user_id},
+			#{prj_name},
+			#{p_content},
+			#{used_skill},
+			#{period_st},
+			#{period_ex}
+			)
 	</insert>
 	
 	<!-- 조회수 증가 -->
