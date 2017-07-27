@@ -1,6 +1,7 @@
 package com.cross.controller;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -23,15 +24,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cross.model.Notice;
 import com.cross.service.BoardDao;
 
+import com.cross.model.User;
+import com.cross.service.RegiMybatisDAO;
+import com.cross.service.UserDao;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
-	
+	private static final int listMax=10;//한 페이지에 띄울 list 갯수
+	private static final int pageMax=10;//페이지 그룹에서 페이지의 갯수
 	@Autowired
 	private BoardDao boDao;
+
+	private RegiMybatisDAO rDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	/*
@@ -49,7 +57,47 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String boardList(Model model) {
+	public String boardList(@RequestParam(value= "pageNum", required= false)String pageNum,Model model) {
+		
+		if(pageNum==null){
+			pageNum="1";
+		}
+		
+		int currentNum=Integer.parseInt(pageNum);
+		int startRow = (currentNum-1)*listMax+1;
+		int endRow = currentNum*listMax;
+		
+		int totalCnt=0;
+		
+		List<User> boardList=rDao.selectAllBoards();
+		totalCnt=boardList.size();
+		List<User> tmeList = new ArrayList<User>();
+		
+		
+		if(totalCnt>0){
+		int i=0;	
+		if(totalCnt<endRow)
+			endRow=totalCnt;
+			
+			while(true){// listMax의 크기만큼 받아옴.
+				if(i>=(endRow-(currentNum-1)*10))
+					break;	
+			tmeList.add(boardList.get(startRow+i-1));
+				i++;
+			}
+		}else
+			tmeList = null;//////한페이지에 등록 할 수있는 리스트의 형태
+		int pageGroupCount = totalCnt/(listMax*pageMax)+ ((totalCnt%listMax*pageMax)==0?0:1);//페이지 그룹의 갯수
+		
+		int pageGroupNum = (int)Math.ceil((double)currentNum/pageMax);//현재 페이지의  페이지 그룹 번호
+		
+		model.addAttribute("pageGroupNum", pageGroupNum);
+		model.addAttribute("pageGroupCount", pageGroupCount);
+		model.addAttribute("pageMax", pageMax);
+		model.addAttribute("listMax", listMax );
+		model.addAttribute("tmeList", tmeList);
+		model.addAttribute("currentNum",currentNum);
+		model.addAttribute("totalCnt", totalCnt);
 		return "/admin/manageUser";
 	}*/
 	

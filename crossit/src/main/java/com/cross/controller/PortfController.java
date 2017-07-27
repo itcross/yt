@@ -39,13 +39,15 @@ public class PortfController {
 	private PortfDaoImpl portfDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(PortfController.class);
-	
+
+	//전체 포트폴리오
 	@RequestMapping(value = "/portlist", method = RequestMethod.GET)
 	public String portList(Model model) {
 		model.addAttribute("portl",portfDao.listPortf());
 		return "portlist";
 	}
-	
+
+	//개인 포트 이력
 	@RequestMapping(value = "/portview",method=RequestMethod.GET)
 	public ModelAndView viewPort(@RequestParam String user_id,HttpSession session)throws Exception{
 
@@ -58,6 +60,8 @@ public class PortfController {
 		return mv;
 	}
 	
+
+	//포트폴리오 삭제
 	@RequestMapping(value = "/portdel", method = RequestMethod.POST)
 	public ModelAndView delPort(HttpSession session,@RequestParam String del){
 		String sessid = (String)session.getAttribute("user_id");
@@ -73,6 +77,7 @@ public class PortfController {
 		return mv;
 	}
 	
+	//포트폴리오 등록 페이지
 	@RequestMapping(value = "/portinst" , method = RequestMethod.GET)
 	public ModelAndView regPortPage(HttpSession session){
 		ModelAndView mv = new ModelAndView();
@@ -80,7 +85,7 @@ public class PortfController {
 		/*if(session.getAttribute("user_id") != null){
 			mv.setViewName("portinst");
 		}
-		
+		//세션이 없다면 글등록 권한 없음
 		mv.setViewName("/main/login");*/
 		return mv;
 	} 

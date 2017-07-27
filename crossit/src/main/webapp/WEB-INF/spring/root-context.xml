@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+	 <context:annotation-config />
+
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/crossit"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="apmsetup"></property>
+		<property name="password" value="1234"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -21,23 +27,38 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.daum.net"></property>
-		<property name="port" value="465"></property>
-		<property name="username" value="modernhart"></property>
-		<property name="password" value="admin8392"></property>
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtps</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.startls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean>
 	
+	<bean id="rDao" class="com.cross.service.RegiMybatisDAO">
+	</bean>
+
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="1000000"></property>
 		<property name="maxInMemorySize" value="10000"></property>
 	</bean>
+
+	<!--  <bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+    <property name="order" value="0"></property>
+	</bean> -->
+	
+	<!-- 이메일 관련 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<property name="host" value="smtp.gmail.com" />
+    	<property name="port" value="587" />
+    	<property name="username" value="lhb5759@gmail.com" />
+    	<property name="password" value="dl128594" />
+    	<property name="javaMailProperties">
+     	   <props>
+            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+    </property>
+</bean>
+
+<bean id="mailService" class="com.cross.util.MailServiceImpl">
+    <property name="javaMailSender" ref="javaMailSender" />
+</bean>
+
 </beans>
