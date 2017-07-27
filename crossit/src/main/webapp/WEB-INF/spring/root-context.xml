@@ -30,7 +30,12 @@
 	
 	<bean id="rDao" class="com.cross.service.RegiMybatisDAO">
 	</bean>
-	
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000"></property>
+		<property name="maxInMemorySize" value="10000"></property>
+	</bean>
+
 	<!--  <bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
 	</bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
@@ -55,4 +60,5 @@
 <bean id="mailService" class="com.cross.util.MailServiceImpl">
     <property name="javaMailSender" ref="javaMailSender" />
 </bean>
+
 </beans>

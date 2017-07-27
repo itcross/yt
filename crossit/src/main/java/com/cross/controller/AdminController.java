@@ -7,14 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cross.model.Notice;
+import com.cross.service.BoardDao;
 
 import com.cross.model.User;
 import com.cross.service.RegiMybatisDAO;
@@ -29,10 +37,12 @@ public class AdminController {
 	private static final int listMax=10;//한 페이지에 띄울 list 갯수
 	private static final int pageMax=10;//페이지 그룹에서 페이지의 갯수
 	@Autowired
+	private BoardDao boDao;
+
 	private RegiMybatisDAO rDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+	/*
 	@RequestMapping(value = "/") 
 	public String home(Locale locale, Model model) {
 		logger.info("welcome ! admin page");
@@ -89,18 +99,47 @@ public class AdminController {
 		model.addAttribute("currentNum",currentNum);
 		model.addAttribute("totalCnt", totalCnt);
 		return "/admin/manageUser";
-	}
+	}*/
 	
+	//공지사항 리스트
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String noticeList(Model model) {
 		return "/admin/managenotice";
 	}
 	
-	@RequestMapping(value = "/writen", method = RequestMethod.GET)
-	public String noticeWrite(Model model) {
-		return "/admin/writenotice";
+	//공지사항 글쓰기 action
+	@RequestMapping(value = "/writen.do", method = RequestMethod.POST)
+	public @ResponseBody String NoticeWrite(Model model,HttpSession session,@ModelAttribute Notice notice)throws Exception{
+		System.out.println(notice);
+		System.out.println(notice.getFile());
+		System.out.println(notice.getN_chk());
+		System.out.println(notice.getN_content());
+		System.out.println(notice.getN_subject());
+		System.out.println(notice.getUser_id());
+		return "gg";
+		/*String sessid = (String)session.getAttribute("user_id");
+		ModelAndView mv = new ModelAndView();
+		if(sessid != null || sessid == "admin"){
+			
+			
+		}else{
+			mv.setViewName("/");
+		}
+		
+		return "/admin/writenotice";*/
 	}
-	
+	//공지사항 글쓰기 페이지
+	@RequestMapping(value = "/writen", method = RequestMethod.GET)
+	public String noticeWpage(Model model,HttpSession session)throws Exception{
+		//String sessid = (String)session.getAttribute("user_id");
+		//관리자가 아니고, 로그인이 아닐경우
+		//if(sessid != "admin" || sessid == null ){
+			//return "redirect:/"; //메인페이지 리다이렉트
+		//}else{
+			return "/admin/writenotice";			
+		//}
+	}
+	/*
 	@RequestMapping(value = "/viewnot", method = RequestMethod.GET)
 	public String noticeView(Model model) {
 		return "/admin/viewnotice";
@@ -119,5 +158,5 @@ public class AdminController {
 	@RequestMapping(value = "/viewfaq", method = RequestMethod.GET)
 	public String faqView(Model model) {
 		return "/admin/viewfaq";
-	}
+	}*/
 }

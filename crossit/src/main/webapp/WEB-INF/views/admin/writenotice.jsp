@@ -57,14 +57,14 @@ String d = df.format(date);
        			<h4><i class="fa fa-home"></i>  HOME <i class="fa fa-angle-right"></i> 게시판 <i class="fa fa-angle-right"></i> 공지사항</h4>
        			<div class="row mt">
           		<div class="col-lg-12">
-                <form class="form-horizontal style-form" method="get">
+                <form class="form-horizontal style-form" method="post" action="writen.do"> 
                   <div class="form-panel">
                   <h4>공지사항 글쓰기</h4>
                   <hr class="mb">
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label" style="text-align: center;">제목</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control">
+                                  <input type="text" class="form-control" name="n_subject">
                               </div>
                           </div>
                           <div class="form-group">
@@ -73,7 +73,7 @@ String d = df.format(date);
                                   <div class="switch switch-square"
                                        data-on-label="<i class=' fa fa-check'></i>"
                                        data-off-label="<i class='fa fa-times'></i>">
-                                      <input type="checkbox" name="notice" checked />
+                                      <input type="checkbox" name="notice" value="1" checked />
                                   </div>
                                   <span class="help-block" style="display: none;">A block of help text that breaks on.</span>
                               </div>
@@ -93,19 +93,19 @@ String d = df.format(date);
                           <div class="form-group">
                           <label class="col-lg-2 col-sm-2 control-label" style="text-align: center;">내용</label>
 	                          <div class="col-sm-10">
-	                          		<textarea class="form-control" rows="15"></textarea>
+	                          		<textarea name="n_content" class="form-control" rows="15"></textarea>
 	                          </div>
                      	  </div>
                      	  <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label" style="text-align: center;">첨부파일</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" type="file">
+                                  <input class="form-control" id="disabledInput" type="file" name="file">
                               </div>
                           </div>
                           </div>
                           <div class="row mt" style="margin-top: 50px;">
 	                          <div class="text-center col-sm-12">
-									<button type="button"  class="btn btn-primary"> 등록 </button>
+									<input type="submit"  class="btn btn-primary" value="등록">
 									<button type="button"  class="btn btn-default" onclick="history.back();"> 취소 </button>
 	                          </div>
 							</div>
