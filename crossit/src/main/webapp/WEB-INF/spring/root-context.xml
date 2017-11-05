@@ -61,4 +61,5 @@
     <property name="javaMailSender" ref="javaMailSender" />
 </bean>
 
+<bean id="upload" class="com.cross.controller.UploadVideo"></bean>
 </beans>
